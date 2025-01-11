@@ -1,16 +1,10 @@
 import React from "react"
+import Header from './components/Header'
 
-/**
- * Goal: Build out the main parts of our app
- *
- * Challenge: Add a header with the game title
- * and description. Startin' out easy 🙂🚶‍➡️
- */
-
-export default function Hangman() {
+export default function AssemblyEndgame() {
     return (
         <main>
-            Game goes here
+          <Header />
         </main>
     )
 }
