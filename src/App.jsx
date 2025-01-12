@@ -8,9 +8,15 @@ export default function AssemblyEndgame() {
   const [currentWord, setCurrentWord] = useState('react');
   const [guessedLetters, setGuessedLetters] = useState([]);
 
-  const wordElements = currentWord.split('').map((letter, index) => <span
-  className='word-letter'
-  key={index}>{letter.toUpperCase()}</span>)
+  const wordElements = currentWord.split('').map((letter, index) => {
+    return (
+      <span
+        key={index}
+      >
+        {guessedLetters.includes(letter) ? letter.toUpperCase() : ''}
+      </span>
+    )
+  })
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
