@@ -54,6 +54,7 @@ section.language-container {
   gap: 5px;
   justify-content: center;
   max-width: 350px;
+  margin: auto;
   margin-bottom: 36px;
 }
 
@@ -78,4 +79,40 @@ section.word-container > span {
   height: 40px;
   background: #323232;
   font-size: 1.125rem;
+}
+
+section.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 480px;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+section.keyboard > button {
+  background-color: #FCBA29;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  color: #1E1E1E;
+  border: 1px solid #D7D7D7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+button.new-game {
+  background-color: #11B5E5;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  width: 225px;
+  height: 40px;
+  padding: 6px 12px;
+  display: block;
+  margin-inline: auto;
+  margin-top: 30px;
+  cursor: pointer;
 }
