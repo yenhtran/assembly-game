@@ -23,13 +23,15 @@ export default function AssemblyEndgame() {
       wrong: isWrong
     })
 
-    return (<button
-        key={letter}
-        className={className}
-        onClick={() => addGuessedLetter(letter)}
-    >
-        {letter.toUpperCase()}
-    </button>)
+    return (
+      <button
+          key={letter}
+          className={className}
+          onClick={() => addGuessedLetter(letter)}
+      >
+          {letter.toUpperCase()}
+      </button>
+    )
 })
 
   function addGuessedLetter(letter) {
