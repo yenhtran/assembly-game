@@ -54,9 +54,28 @@ section.language-container {
   gap: 5px;
   justify-content: center;
   max-width: 350px;
+  margin-bottom: 36px;
 }
 
 span.language-chip {
   padding: 5px;
   border-radius: 3px;
+}
+
+section.word-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+section.word-container > span {
+  border-bottom: 1px solid #F9F4DA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: #323232;
+  font-size: 1.125rem;
 }
