@@ -15,6 +15,8 @@ export default function AssemblyEndgame() {
   const isGameWon = currentWord.split('').every(char => guessedLetters.includes(char));
   const isGameLost = wrongGuessCount >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost
+  const lastGuessedLetter = guessedLetters[guessedLetters.length-1];
+  const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -58,7 +60,13 @@ export default function AssemblyEndgame() {
   return (
       <main>
         <Header />
-        <Status isGameWon={isGameWon} isGameLost={isGameLost}/>
+        <Status
+          isGameWon={isGameWon}
+          isGameLost={isGameLost}
+          isGameOver={isGameOver}
+          isLastGuessIncorrect={isLastGuessIncorrect}
+          wrongGuessCount={wrongGuessCount}
+        />
         <Languages wrongGuessCount={wrongGuessCount}/>
         <section className='word-container'>
           {wordElements}

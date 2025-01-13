@@ -1,16 +1,36 @@
-import clsx from 'clsx'
-export default function Status({ isGameWon, isGameLost}) {
-  const className = clsx({
+import clsx from 'clsx';
+import getFarewellText from '../utils'
+import { languages } from '../languages';
+
+export default function Status({ isGameWon, isGameLost, isGameOver, isLastGuessIncorrect, wrongGuessCount }) {
+  const gameStatusClass = clsx('game-status', {
     won: isGameWon,
-    lost: isGameLost
+    lost: isGameLost,
+    farewell: !isGameOver && isLastGuessIncorrect
   })
 
-  const visibilityStyles = { visibility: isGameWon || isGameLost ? 'visible' : 'hidden'}
+  let renderStatusElement;
+  if (!isGameOver && isLastGuessIncorrect) {
+    renderStatusElement = <p className='farewell-message'>{getFarewellText(languages[wrongGuessCount-1].name)}</p>
+  } else if (isGameWon) {
+    renderStatusElement =
+      <>
+        <h2>You win!</h2>
+        <p>Well done!🎉</p>
+      </>
+  } else if (isGameLost) {
+    renderStatusElement =
+      <>
+        <h2>Game over!</h2>
+        <p>You lose! Better start learning Assembly 😭</p>
+      </>
+  } else {
+    renderStatusElement = null
+  }
 
   return (
-    <section className={'game-status ' + className}>
-      <h2 style={visibilityStyles}>{isGameWon ? 'You win!' : isGameLost ? 'Game over!' : 'Purposely left hidden'}</h2>
-      <p style={visibilityStyles}>{isGameWon ? 'Well done!🎉' : isGameLost ? 'You lose! Better start learning Assembly 😭' : 'Purposely left hidden'}</p>
+    <section className={gameStatusClass}>
+      {renderStatusElement}
     </section>
   )
 }
