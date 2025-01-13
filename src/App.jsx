@@ -58,7 +58,7 @@ export default function AssemblyEndgame() {
   return (
       <main>
         <Header />
-        <Status />
+        <Status isGameWon={isGameWon} isGameLost={isGameLost}/>
         <Languages wrongGuessCount={wrongGuessCount}/>
         <section className='word-container'>
           {wordElements}
