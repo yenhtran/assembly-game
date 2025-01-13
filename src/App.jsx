@@ -5,9 +5,15 @@ import Status from './components/Status'
 import Languages from './components/Languages'
 
 export default function AssemblyEndgame() {
+  // State values
   const [currentWord, setCurrentWord] = useState('react');
   const [guessedLetters, setGuessedLetters] = useState([]);
 
+  // Derived values
+  const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
+
+  // Static values
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const wordElements = currentWord.split('').map((letter, index) => {
     return (
       <span
@@ -18,7 +24,6 @@ export default function AssemblyEndgame() {
     )
   })
 
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   const keyboardElements = alphabet.split("").map(letter => {
     const isGuessed = guessedLetters.includes(letter);
@@ -50,7 +55,7 @@ export default function AssemblyEndgame() {
       <main>
         <Header />
         <Status />
-        <Languages />
+        <Languages wrongGuessCount={wrongGuessCount}/>
         <section className='word-container'>
           {wordElements}
         </section>

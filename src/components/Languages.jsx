@@ -1,16 +1,21 @@
 import { languages } from '../languages'
+import clsx from 'clsx'
 
-export default function Languages() {
-  const languageElements = languages.map(lang => {
+export default function Languages({ wrongGuessCount }) {
+  const languageElements = languages.map((lang, index) => {
+    const isLanguageLost = index < wrongGuessCount;
+
     const styles = {
       backgroundColor: lang.backgroundColor,
       color: lang.color
     }
 
+    const className = clsx('language-chip', isLanguageLost && 'lost')
+
     return (
       <span
         key={lang.name}
-        className='language-chip'
+        className={className}
         style={styles}
       >{lang.name}</span>
     )
