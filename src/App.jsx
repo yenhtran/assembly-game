@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import Header from './components/Header'
 import Status from './components/Status'
 import Languages from './components/Languages'
+import { languages } from './languages'
 
 export default function AssemblyEndgame() {
   // State values
@@ -11,9 +12,13 @@ export default function AssemblyEndgame() {
 
   // Derived values
   const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
+  const isGameWon = currentWord.split('').every(char => guessedLetters.includes(char));
+  const isGameLost = wrongGuessCount >= languages.length - 1;
+  const isGameOver = isGameWon || isGameLost
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
   const wordElements = currentWord.split('').map((letter, index) => {
     return (
       <span
@@ -23,7 +28,6 @@ export default function AssemblyEndgame() {
       </span>
     )
   })
-
 
   const keyboardElements = alphabet.split("").map(letter => {
     const isGuessed = guessedLetters.includes(letter);
@@ -62,7 +66,7 @@ export default function AssemblyEndgame() {
         <section className='keyboard'>
           {keyboardElements}
         </section>
-        <button className='new-game'>New Game</button>
+        {isGameOver && <button className='new-game'>New Game</button>}
       </main>
   )
 }
