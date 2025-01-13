@@ -76,6 +76,7 @@ section.language-container {
 span.language-chip {
   padding: 5px;
   border-radius: 3px;
+  position: relative;
 }
 
 span.language-chip.lost::before {
