@@ -5,6 +5,8 @@ import Status from './components/Status'
 import Languages from './components/Languages'
 import { languages } from './languages'
 import { getRandomWord } from './utils'
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
 
 export default function AssemblyEndgame() {
   // State values
@@ -19,6 +21,7 @@ export default function AssemblyEndgame() {
   const isGameOver = isGameWon || isGameLost
   const lastGuessedLetter = guessedLetters[guessedLetters.length-1];
   const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
+  const { width, height } = useWindowSize()
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -72,6 +75,7 @@ export default function AssemblyEndgame() {
 
   return (
       <main>
+        {isGameWon && <Confetti width={width} height={height} recycle={false} numberOfPieces={1000}/>}
         <Header />
         <Status
           isGameWon={isGameWon}
