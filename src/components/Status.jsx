@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import getFarewellText from '../utils'
 import { languages } from '../languages';
 
-export default function Status({ isGameWon, isGameLost, isGameOver, isLastGuessIncorrect, wrongGuessCount }) {
+export default function Status({ isGameWon, isGameLost, isGameOver, isLastGuessIncorrect, wrongGuessCount, currentWord, guessedLetters }) {
   const gameStatusClass = clsx('game-status', {
     won: isGameWon,
     lost: isGameLost,
@@ -29,8 +29,13 @@ export default function Status({ isGameWon, isGameLost, isGameOver, isLastGuessI
   }
 
   return (
-    <section className={gameStatusClass}>
-      {renderStatusElement}
-    </section>
+    <>
+      <section aria-live='polite' role='status' className={gameStatusClass}>
+        {renderStatusElement}
+      </section>
+      <section className='sr-only' aria-live='polite' role='status'>
+        <p>Current word: {currentWord.split('').map(letter => guessedLetters.includes(letter) ? letter + '.' : 'blank.').join(' ')}</p>
+      </section>
+    </>
   )
 }

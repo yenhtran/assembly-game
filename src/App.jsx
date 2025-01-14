@@ -43,11 +43,13 @@ export default function AssemblyEndgame() {
     return (
       <button
           disabled={isGameOver}
+          aria-disabled={guessedLetters.includes(letter)}
+          aria-label={`Letter ${letter}`}
           key={letter}
           className={className}
           onClick={() => addGuessedLetter(letter)}
       >
-          {letter.toUpperCase()}
+        {letter.toUpperCase()}
       </button>
     )
 })
@@ -67,6 +69,8 @@ export default function AssemblyEndgame() {
           isGameOver={isGameOver}
           isLastGuessIncorrect={isLastGuessIncorrect}
           wrongGuessCount={wrongGuessCount}
+          currentWord={currentWord}
+          guessedLetters={guessedLetters}
         />
         <Languages wrongGuessCount={wrongGuessCount}/>
         <section className='word-container'>
