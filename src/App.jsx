@@ -4,10 +4,11 @@ import Header from './components/Header'
 import Status from './components/Status'
 import Languages from './components/Languages'
 import { languages } from './languages'
+import { getRandomWord } from './utils'
 
 export default function AssemblyEndgame() {
   // State values
-  const [currentWord, setCurrentWord] = useState('react');
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   // Derived values
@@ -61,6 +62,11 @@ export default function AssemblyEndgame() {
     )
   }
 
+  function startNewGame() {
+    setCurrentWord(getRandomWord());
+    setGuessedLetters([])
+  }
+
   return (
       <main>
         <Header />
@@ -82,7 +88,7 @@ export default function AssemblyEndgame() {
         <section className='keyboard'>
           {keyboardElements}
         </section>
-        {isGameOver && <button className='new-game'>New Game</button>}
+        {isGameOver && <button className='new-game' onClick={startNewGame}>New Game</button>}
       </main>
   )
 }

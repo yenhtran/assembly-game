@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import getFarewellText from '../utils'
+import { getFarewellText } from '../utils'
 import { languages } from '../languages';
 
 export default function Status({ isGameWon, isGameLost, isGameOver, lastGuessedLetter, isLastGuessIncorrect, numGuessesLeft, wrongGuessCount, currentWord, guessedLetters }) {
