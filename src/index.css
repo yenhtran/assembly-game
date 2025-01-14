@@ -119,6 +119,9 @@ section.word-container > span {
   font-size: 1.125rem;
 }
 
+section.word-container>span.missed-letter {
+  color: red;
+}
 section.keyboard {
   display: flex;
   flex-wrap: wrap;

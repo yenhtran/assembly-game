@@ -24,11 +24,14 @@ export default function AssemblyEndgame() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   const wordElements = currentWord.split('').map((letter, index) => {
+    const shouldRevealLetter = isGameLost || guessedLetters.includes(letter)
+    const letterClassname = clsx(isGameLost && !guessedLetters.includes(letter) && 'missed-letter')
     return (
       <span
+        className={letterClassname}
         key={index}
       >
-        {guessedLetters.includes(letter) ? letter.toUpperCase() : ''}
+        {shouldRevealLetter ? letter.toUpperCase() : ''}
       </span>
     )
   })
