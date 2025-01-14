@@ -11,9 +11,10 @@ export default function AssemblyEndgame() {
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   // Derived values
+  const numGuessesLeft = languages.length - 1
   const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
   const isGameWon = currentWord.split('').every(char => guessedLetters.includes(char));
-  const isGameLost = wrongGuessCount >= languages.length - 1;
+  const isGameLost = wrongGuessCount >= numGuessesLeft;
   const isGameOver = isGameWon || isGameLost
   const lastGuessedLetter = guessedLetters[guessedLetters.length-1];
   const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
@@ -67,7 +68,9 @@ export default function AssemblyEndgame() {
           isGameWon={isGameWon}
           isGameLost={isGameLost}
           isGameOver={isGameOver}
+          lastGuessedLetter={lastGuessedLetter}
           isLastGuessIncorrect={isLastGuessIncorrect}
+          numGuessesLeft={numGuessesLeft}
           wrongGuessCount={wrongGuessCount}
           currentWord={currentWord}
           guessedLetters={guessedLetters}
